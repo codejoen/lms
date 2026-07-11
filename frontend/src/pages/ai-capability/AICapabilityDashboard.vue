@@ -6,9 +6,10 @@
 				<strong>AI Capability</strong>
 			</div>
 			<button class="class-switch">
-				<span class="class-icon">10A</span>
+				<span class="class-icon">A1</span>
 				<span
-					><strong>Class 10A</strong><small>Ms. Berg · 25 students</small></span
+					><strong>Aurora Cohort</strong
+					><small>Guide Riley · 25 learners</small></span
 				>
 				<b>⌄</b>
 			</button>
@@ -32,8 +33,8 @@
 					</p>
 				</div>
 				<button>
-					<span>MB</span>
-					<p><strong>Ms. Berg</strong><small>AI learning coach</small></p>
+					<span>GR</span>
+					<p><strong>Guide Riley</strong><small>AI learning coach</small></p>
 					<i>•••</i>
 				</button>
 			</div>
@@ -42,8 +43,8 @@
 		<main class="ai-main" id="ai-overview">
 			<header class="ai-topbar">
 				<div>
-					<span>STANFORD HIGH SCHOOL</span><i>/</i
-					><strong>AI capability · Class 10A</strong>
+					<span>NORTHSTAR LEARNING LAB</span><i>/</i
+					><strong>AI capability · Aurora Cohort</strong>
 				</div>
 				<div class="top-actions">
 					<span class="live"><i></i> LOGS LIVE</span
@@ -57,8 +58,8 @@
 			<div class="ai-content">
 				<section class="hero">
 					<div>
-						<span>STANFORD HIGH SCHOOL · 47 AI LOGS IN THE LAST 20 MIN</span>
-						<h1>How is Class 10A working with AI?</h1>
+						<span>NORTHSTAR LAB · 47 AI LOGS IN THE LAST 20 MIN</span>
+						<h1>How is Aurora working with AI?</h1>
 						<p>
 							Every student’s AI activity, capability signals, and full working
 							context in one view.
@@ -152,17 +153,20 @@
 								@click="selected = student"
 							>
 								<span
-									class="student-dot"
+									class="student-pad"
 									:class="`tone-${statusFor(student.score).tone}`"
-									:style="{ '--dot': student.color }"
-									><i></i><b></b
-								></span>
+								>
+									<img :src="padSrc(student)" alt="" />
+									<b></b>
+								</span>
 								<strong>{{ student.name }}</strong
 								><small>{{ student.score }}% · {{ student.capability }}</small>
 							</button>
 							<div class="teacher-card">
-								<span>MB</span>
-								<p><strong>Ms. Berg</strong><small>AI learning coach</small></p>
+								<span>GR</span>
+								<p>
+									<strong>Guide Riley</strong><small>AI learning coach</small>
+								</p>
 								<i>All student contexts are live</i>
 							</div>
 						</div>
@@ -171,8 +175,8 @@
 							><span><i class="yellow"></i>developing</span
 							><span><i class="green"></i>AI capable</span
 							><small
-								>Status dot shows AI capability · circle color identifies each
-								student</small
+								>Pad color shows AI capability · shape gives each learner a
+								playful identity</small
 							>
 						</div>
 					</section>
@@ -204,10 +208,9 @@
 								class="review-row"
 								@click="selected = student"
 							>
-								<span
-									class="mini-dot"
-									:style="{ '--dot': student.color }"
-								></span>
+								<span class="mini-pad"
+									><img :src="padSrc(student)" alt=""
+								/></span>
 								<p>
 									<strong>{{ student.name }}</strong
 									><small>{{ student.note }}</small>
@@ -228,7 +231,7 @@
 			</div>
 
 			<footer>
-				<span>Stanford High School · AI capability prototype</span>
+				<span>Northstar Learning Lab · AI capability prototype</span>
 				<p>
 					AI activity and full task context are visible to authorized educators.
 				</p>
@@ -247,11 +250,13 @@
 				</button>
 				<div class="drawer-dot">
 					<span
-						class="student-dot large"
+						class="student-pad large"
 						:class="`tone-${statusFor(selected.score).tone}`"
-						:style="{ '--dot': selected.color }"
-						><i></i><b></b></span
-					><em :class="statusFor(selected.score).tone">{{
+					>
+						<img :src="padSrc(selected)" alt="" />
+						<b></b>
+					</span>
+					<em :class="statusFor(selected.score).tone">{{
 						statusFor(selected.score).label
 					}}</em>
 				</div>
@@ -269,7 +274,7 @@
 						<i
 							:style="{
 								width: `${selected.score}%`,
-								background: selected.color,
+								background: capabilityColor(selected.score),
 							}"
 						></i>
 					</p>
@@ -330,6 +335,41 @@
 
 <script setup>
 import { computed, ref } from 'vue'
+
+const padFamilies = [
+	'pad-01-cloud-terminal',
+	'pad-02-water-drop',
+	'pad-03-fire',
+	'pad-04-orange-owl',
+	'pad-05-rock',
+	'pad-06-sprout',
+	'pad-07-robot-stack',
+	'pad-08-blue-bot',
+	'pad-09-null-bot',
+]
+const padStateColors = [
+	'ed1212',
+	'ed3e12',
+	'ed6a12',
+	'ed9512',
+	'edc112',
+	'eded12',
+	'c1ed12',
+	'95ed12',
+	'6aed12',
+	'3eed12',
+	'12ed12',
+]
+
+const padSrc = (student) => {
+	const family = padFamilies[(student.id - 1) % padFamilies.length]
+	const state = Math.max(0, Math.min(10, Math.round(student.score / 10)))
+	const file = `${String(state).padStart(2, '0')}-${padStateColors[state]}.png`
+	return `${import.meta.env.BASE_URL}recolorable-pads/steps/${family}/${file}`
+}
+
+const capabilityColor = (score) =>
+	`#${padStateColors[Math.max(0, Math.min(10, Math.round(score / 10)))]}`
 
 const students = ref([
 	{
@@ -1232,7 +1272,7 @@ function syncLogs() {
 	background: transparent;
 	padding: 0;
 }
-.student-node:hover .student-dot {
+.student-node:hover .student-pad {
 	transform: translateY(-5px) scale(1.05);
 }
 .student-node > strong {
@@ -1248,51 +1288,41 @@ function syncLogs() {
 	text-overflow: ellipsis;
 	white-space: nowrap;
 }
-.student-dot {
-	--dot: #58cc02;
+.student-pad {
 	position: relative;
-	display: block;
-	width: 57px;
-	height: 57px;
+	display: grid;
+	width: 64px;
+	height: 64px;
+	place-items: center;
 	transition: 0.22s;
-	border: 4px solid #fff;
-	border-radius: 50%;
-	background: var(--dot);
-	box-shadow:
-		0 0 0 3px color-mix(in srgb, var(--dot) 32%, #ddd),
-		0 7px 0 color-mix(in srgb, var(--dot) 72%, #333),
-		0 10px 18px #2020201f;
+	filter: drop-shadow(0 8px 5px #20202022);
 }
-.student-dot > i {
-	position: absolute;
-	top: 15%;
-	left: 20%;
-	width: 28%;
-	height: 18%;
-	transform: rotate(-22deg);
-	border-radius: 50%;
-	background: #ffffff61;
+.student-pad img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
 }
-.student-dot > b {
+.student-pad > b {
 	position: absolute;
-	top: -5px;
-	right: -7px;
-	width: 8px;
-	height: 8px;
+	top: 1px;
+	right: 0;
+	width: 11px;
+	height: 11px;
 	border: 2px solid #fff;
 	border-radius: 50%;
 	background: var(--green);
+	box-shadow: 0 1px 3px #0002;
 }
-.student-dot.tone-red > b {
+.student-pad.tone-red > b {
 	background: var(--red);
 }
-.student-dot.tone-yellow > b {
+.student-pad.tone-yellow > b {
 	background: var(--yellow);
 }
-.student-dot.large {
-	width: 112px;
-	height: 112px;
-	border-width: 7px;
+.student-pad.large {
+	width: 132px;
+	height: 132px;
 }
 .teacher-card {
 	position: absolute;
@@ -1504,16 +1534,18 @@ function syncLogs() {
 	padding: 12px 15px;
 	text-align: left;
 }
-.mini-dot {
-	width: 29px;
-	height: 29px;
+.mini-pad {
+	display: grid;
+	width: 34px;
+	height: 34px;
 	flex: 0 0 auto;
-	border: 3px solid #fff;
-	border-radius: 50%;
-	background: var(--dot);
-	box-shadow:
-		0 0 0 2px color-mix(in srgb, var(--dot) 30%, #ddd),
-		0 4px 0 color-mix(in srgb, var(--dot) 72%, #333);
+	place-items: center;
+	filter: drop-shadow(0 3px 3px #2020201f);
+}
+.mini-pad img {
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
 }
 .review-row p {
 	min-width: 0;
