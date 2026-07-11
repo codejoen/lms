@@ -1,0 +1,283 @@
+{
+  "canvas": [
+    96,
+    96
+  ],
+  "palette": [
+    {
+      "step": 0,
+      "hue": 0,
+      "hex": "#ed1212",
+      "label": "00"
+    },
+    {
+      "step": 1,
+      "hue": 12,
+      "hex": "#ed3e12",
+      "label": "01"
+    },
+    {
+      "step": 2,
+      "hue": 24,
+      "hex": "#ed6a12",
+      "label": "02"
+    },
+    {
+      "step": 3,
+      "hue": 36,
+      "hex": "#ed9512",
+      "label": "03"
+    },
+    {
+      "step": 4,
+      "hue": 48,
+      "hex": "#edc112",
+      "label": "04"
+    },
+    {
+      "step": 5,
+      "hue": 60,
+      "hex": "#eded12",
+      "label": "05"
+    },
+    {
+      "step": 6,
+      "hue": 72,
+      "hex": "#c1ed12",
+      "label": "06"
+    },
+    {
+      "step": 7,
+      "hue": 84,
+      "hex": "#95ed12",
+      "label": "07"
+    },
+    {
+      "step": 8,
+      "hue": 96,
+      "hex": "#6aed12",
+      "label": "08"
+    },
+    {
+      "step": 9,
+      "hue": 108,
+      "hex": "#3eed12",
+      "label": "09"
+    },
+    {
+      "step": 10,
+      "hue": 120,
+      "hex": "#12ed12",
+      "label": "10"
+    }
+  ],
+  "pads": [
+    {
+      "id": "pad-01-cloud-terminal",
+      "name": "Cloud Terminal",
+      "original": "originals/pad-01-cloud-terminal.png",
+      "steps": [
+        "steps/pad-01-cloud-terminal/00-ed1212.png",
+        "steps/pad-01-cloud-terminal/01-ed3e12.png",
+        "steps/pad-01-cloud-terminal/02-ed6a12.png",
+        "steps/pad-01-cloud-terminal/03-ed9512.png",
+        "steps/pad-01-cloud-terminal/04-edc112.png",
+        "steps/pad-01-cloud-terminal/05-eded12.png",
+        "steps/pad-01-cloud-terminal/06-c1ed12.png",
+        "steps/pad-01-cloud-terminal/07-95ed12.png",
+        "steps/pad-01-cloud-terminal/08-6aed12.png",
+        "steps/pad-01-cloud-terminal/09-3eed12.png",
+        "steps/pad-01-cloud-terminal/10-12ed12.png"
+      ],
+      "animations": {
+        "gif": "animations/pad-01-cloud-terminal.gif",
+        "webp": "animations/pad-01-cloud-terminal.webp",
+        "apng": "animations/pad-01-cloud-terminal.png"
+      }
+    },
+    {
+      "id": "pad-02-water-drop",
+      "name": "Water Drop",
+      "original": "originals/pad-02-water-drop.png",
+      "steps": [
+        "steps/pad-02-water-drop/00-ed1212.png",
+        "steps/pad-02-water-drop/01-ed3e12.png",
+        "steps/pad-02-water-drop/02-ed6a12.png",
+        "steps/pad-02-water-drop/03-ed9512.png",
+        "steps/pad-02-water-drop/04-edc112.png",
+        "steps/pad-02-water-drop/05-eded12.png",
+        "steps/pad-02-water-drop/06-c1ed12.png",
+        "steps/pad-02-water-drop/07-95ed12.png",
+        "steps/pad-02-water-drop/08-6aed12.png",
+        "steps/pad-02-water-drop/09-3eed12.png",
+        "steps/pad-02-water-drop/10-12ed12.png"
+      ],
+      "animations": {
+        "gif": "animations/pad-02-water-drop.gif",
+        "webp": "animations/pad-02-water-drop.webp",
+        "apng": "animations/pad-02-water-drop.png"
+      }
+    },
+    {
+      "id": "pad-03-fire",
+      "name": "Fire",
+      "original": "originals/pad-03-fire.png",
+      "steps": [
+        "steps/pad-03-fire/00-ed1212.png",
+        "steps/pad-03-fire/01-ed3e12.png",
+        "steps/pad-03-fire/02-ed6a12.png",
+        "steps/pad-03-fire/03-ed9512.png",
+        "steps/pad-03-fire/04-edc112.png",
+        "steps/pad-03-fire/05-eded12.png",
+        "steps/pad-03-fire/06-c1ed12.png",
+        "steps/pad-03-fire/07-95ed12.png",
+        "steps/pad-03-fire/08-6aed12.png",
+        "steps/pad-03-fire/09-3eed12.png",
+        "steps/pad-03-fire/10-12ed12.png"
+      ],
+      "animations": {
+        "gif": "animations/pad-03-fire.gif",
+        "webp": "animations/pad-03-fire.webp",
+        "apng": "animations/pad-03-fire.png"
+      }
+    },
+    {
+      "id": "pad-04-orange-owl",
+      "name": "Orange Owl",
+      "original": "originals/pad-04-orange-owl.png",
+      "steps": [
+        "steps/pad-04-orange-owl/00-ed1212.png",
+        "steps/pad-04-orange-owl/01-ed3e12.png",
+        "steps/pad-04-orange-owl/02-ed6a12.png",
+        "steps/pad-04-orange-owl/03-ed9512.png",
+        "steps/pad-04-orange-owl/04-edc112.png",
+        "steps/pad-04-orange-owl/05-eded12.png",
+        "steps/pad-04-orange-owl/06-c1ed12.png",
+        "steps/pad-04-orange-owl/07-95ed12.png",
+        "steps/pad-04-orange-owl/08-6aed12.png",
+        "steps/pad-04-orange-owl/09-3eed12.png",
+        "steps/pad-04-orange-owl/10-12ed12.png"
+      ],
+      "animations": {
+        "gif": "animations/pad-04-orange-owl.gif",
+        "webp": "animations/pad-04-orange-owl.webp",
+        "apng": "animations/pad-04-orange-owl.png"
+      }
+    },
+    {
+      "id": "pad-05-rock",
+      "name": "Rock",
+      "original": "originals/pad-05-rock.png",
+      "steps": [
+        "steps/pad-05-rock/00-ed1212.png",
+        "steps/pad-05-rock/01-ed3e12.png",
+        "steps/pad-05-rock/02-ed6a12.png",
+        "steps/pad-05-rock/03-ed9512.png",
+        "steps/pad-05-rock/04-edc112.png",
+        "steps/pad-05-rock/05-eded12.png",
+        "steps/pad-05-rock/06-c1ed12.png",
+        "steps/pad-05-rock/07-95ed12.png",
+        "steps/pad-05-rock/08-6aed12.png",
+        "steps/pad-05-rock/09-3eed12.png",
+        "steps/pad-05-rock/10-12ed12.png"
+      ],
+      "animations": {
+        "gif": "animations/pad-05-rock.gif",
+        "webp": "animations/pad-05-rock.webp",
+        "apng": "animations/pad-05-rock.png"
+      }
+    },
+    {
+      "id": "pad-06-sprout",
+      "name": "Sprout",
+      "original": "originals/pad-06-sprout.png",
+      "steps": [
+        "steps/pad-06-sprout/00-ed1212.png",
+        "steps/pad-06-sprout/01-ed3e12.png",
+        "steps/pad-06-sprout/02-ed6a12.png",
+        "steps/pad-06-sprout/03-ed9512.png",
+        "steps/pad-06-sprout/04-edc112.png",
+        "steps/pad-06-sprout/05-eded12.png",
+        "steps/pad-06-sprout/06-c1ed12.png",
+        "steps/pad-06-sprout/07-95ed12.png",
+        "steps/pad-06-sprout/08-6aed12.png",
+        "steps/pad-06-sprout/09-3eed12.png",
+        "steps/pad-06-sprout/10-12ed12.png"
+      ],
+      "animations": {
+        "gif": "animations/pad-06-sprout.gif",
+        "webp": "animations/pad-06-sprout.webp",
+        "apng": "animations/pad-06-sprout.png"
+      }
+    },
+    {
+      "id": "pad-07-robot-stack",
+      "name": "Robot Stack",
+      "original": "originals/pad-07-robot-stack.png",
+      "steps": [
+        "steps/pad-07-robot-stack/00-ed1212.png",
+        "steps/pad-07-robot-stack/01-ed3e12.png",
+        "steps/pad-07-robot-stack/02-ed6a12.png",
+        "steps/pad-07-robot-stack/03-ed9512.png",
+        "steps/pad-07-robot-stack/04-edc112.png",
+        "steps/pad-07-robot-stack/05-eded12.png",
+        "steps/pad-07-robot-stack/06-c1ed12.png",
+        "steps/pad-07-robot-stack/07-95ed12.png",
+        "steps/pad-07-robot-stack/08-6aed12.png",
+        "steps/pad-07-robot-stack/09-3eed12.png",
+        "steps/pad-07-robot-stack/10-12ed12.png"
+      ],
+      "animations": {
+        "gif": "animations/pad-07-robot-stack.gif",
+        "webp": "animations/pad-07-robot-stack.webp",
+        "apng": "animations/pad-07-robot-stack.png"
+      }
+    },
+    {
+      "id": "pad-08-blue-bot",
+      "name": "Blue Bot",
+      "original": "originals/pad-08-blue-bot.png",
+      "steps": [
+        "steps/pad-08-blue-bot/00-ed1212.png",
+        "steps/pad-08-blue-bot/01-ed3e12.png",
+        "steps/pad-08-blue-bot/02-ed6a12.png",
+        "steps/pad-08-blue-bot/03-ed9512.png",
+        "steps/pad-08-blue-bot/04-edc112.png",
+        "steps/pad-08-blue-bot/05-eded12.png",
+        "steps/pad-08-blue-bot/06-c1ed12.png",
+        "steps/pad-08-blue-bot/07-95ed12.png",
+        "steps/pad-08-blue-bot/08-6aed12.png",
+        "steps/pad-08-blue-bot/09-3eed12.png",
+        "steps/pad-08-blue-bot/10-12ed12.png"
+      ],
+      "animations": {
+        "gif": "animations/pad-08-blue-bot.gif",
+        "webp": "animations/pad-08-blue-bot.webp",
+        "apng": "animations/pad-08-blue-bot.png"
+      }
+    },
+    {
+      "id": "pad-09-null-bot",
+      "name": "Null Bot",
+      "original": "originals/pad-09-null-bot.png",
+      "steps": [
+        "steps/pad-09-null-bot/00-ed1212.png",
+        "steps/pad-09-null-bot/01-ed3e12.png",
+        "steps/pad-09-null-bot/02-ed6a12.png",
+        "steps/pad-09-null-bot/03-ed9512.png",
+        "steps/pad-09-null-bot/04-edc112.png",
+        "steps/pad-09-null-bot/05-eded12.png",
+        "steps/pad-09-null-bot/06-c1ed12.png",
+        "steps/pad-09-null-bot/07-95ed12.png",
+        "steps/pad-09-null-bot/08-6aed12.png",
+        "steps/pad-09-null-bot/09-3eed12.png",
+        "steps/pad-09-null-bot/10-12ed12.png"
+      ],
+      "animations": {
+        "gif": "animations/pad-09-null-bot.gif",
+        "webp": "animations/pad-09-null-bot.webp",
+        "apng": "animations/pad-09-null-bot.png"
+      }
+    }
+  ]
+}
