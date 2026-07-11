@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Recolorable Pads</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main>
+    <header>
+      <p class="eyebrow">PIXEL-ASSET-PACK</p>
+      <h1>Recolorable Pads</h1>
+      <p class="intro">Neun freigestellte Figuren, elf Farbstufen von Rot bis Grün und fertige Loop-Animationen.</p>
+    </header>
+
+    <section class="controls" aria-label="Farbsteuerung">
+      <div class="range-wrap">
+        <label for="step">Farbzustand <output id="step-value">00 · #f21313</output></label>
+        <input id="step" type="range" min="0" max="10" step="1" value="0">
+        <div class="scale"><span>Rot</span><span>Orange</span><span>Gelb</span><span>Grün</span></div>
+      </div>
+      <button id="play" type="button" aria-pressed="false">▶ Animation starten</button>
+      <label class="speed">Tempo
+        <select id="speed">
+          <option value="260">Ruhig</option>
+          <option value="140" selected>Normal</option>
+          <option value="80">Schnell</option>
+        </select>
+      </label>
+    </section>
+
+    <section id="grid" class="grid" aria-live="polite"></section>
+
+    <footer>
+      <p>Direkte Dateien: <a href="preview-all-steps.png">Übersicht</a> · <a href="manifest.json">Manifest</a> · <a href="README.md">Dokumentation</a></p>
+    </footer>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
