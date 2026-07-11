@@ -601,9 +601,26 @@ def _ensure_batch(class_record: dict, course_name: str) -> tuple[str, bool]:
 	return batch.name, not bool(existing)
 
 
-def _ensure_batch_enrollment(student_email: str, batch_name: str) -> bool:
+def _ensure_course_enrollment(student_email: str, batch_name: str, course_name: str) -> None:
+	filters = {"member": student_email, "course": course_name}
+	existing = frappe.db.exists("LMS Enrollment", filters)
+	course_enrollment = (
+		frappe.get_doc("LMS Enrollment", existing) if existing else frappe.new_doc("LMS Enrollment")
+	)
+	course_enrollment.update(
+		{
+			"member": student_email,
+			"course": course_name,
+			"enrollment_from_batch": batch_name,
+		}
+	)
+	course_enrollment.save(ignore_permissions=True)
+
+
+def _ensure_batch_enrollment(student_email: str, batch_name: str, course_name: str) -> bool:
 	filters = {"member": student_email, "batch": batch_name}
 	if frappe.db.exists("LMS Batch Enrollment", filters):
+		_ensure_course_enrollment(student_email, batch_name, course_name)
 		return False
 
 	enrollment = frappe.new_doc("LMS Batch Enrollment")
@@ -617,9 +634,9 @@ def _ensure_batch_enrollment(student_email: str, batch_name: str) -> bool:
 	)
 	# This opt-in CLI seed deliberately avoids enrollment emails and does not
 	# impersonate an Administrator. Insert the deterministic batch membership,
-	# then reuse the controller's normal course-enrollment logic.
+	# then save the linked LMS Enrollment through its normal model validation.
 	enrollment.db_insert()
-	enrollment.validate_course_enrollment()
+	_ensure_course_enrollment(student_email, batch_name, course_name)
 	return True
 
 
@@ -720,7 +737,7 @@ def seed() -> dict:
 			summary["classes_created"] += int(batch_created)
 			for student_email in class_record["student_emails"]:
 				summary["batch_enrollments_created"] += int(
-					_ensure_batch_enrollment(student_email, batch_name)
+					_ensure_batch_enrollment(student_email, batch_name, course_name)
 				)
 
 		summary["verification"] = validate_seed()
