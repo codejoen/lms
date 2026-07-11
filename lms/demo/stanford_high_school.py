@@ -617,6 +617,70 @@ def _ensure_batch_enrollment(student_email: str, batch_name: str) -> bool:
 	return True
 
 
+def validate_seed() -> dict:
+	"""Verify that the database matches the complete synthetic dataset."""
+	dataset = build_dataset()
+	errors = []
+	total_batch_enrollments = 0
+	total_course_enrollments = 0
+
+	for class_record in dataset["classes"]:
+		course_name = frappe.db.exists("LMS Course", {"title": class_record["course_title"]})
+		batch_name = frappe.db.exists("LMS Batch", {"title": class_record["batch_title"]})
+		expected_students = len(class_record["student_emails"])
+
+		if not course_name:
+			errors.append(f"Missing course: {class_record['course_title']}")
+			continue
+		if not batch_name:
+			errors.append(f"Missing class: {class_record['batch_title']}")
+			continue
+
+		course_instructors = frappe.db.count(
+			"Course Instructor", {"parent": course_name, "parenttype": "LMS Course"}
+		)
+		batch_instructors = frappe.db.count(
+			"Course Instructor", {"parent": batch_name, "parenttype": "LMS Batch"}
+		)
+		batch_enrollments = frappe.db.count("LMS Batch Enrollment", {"batch": batch_name})
+		course_enrollments = frappe.db.count(
+			"LMS Enrollment",
+			{
+				"course": course_name,
+				"enrollment_from_batch": batch_name,
+			},
+		)
+		total_batch_enrollments += batch_enrollments
+		total_course_enrollments += course_enrollments
+
+		if course_instructors != 3:
+			errors.append(f"{class_record['code']} course has {course_instructors} instructors, expected 3")
+		if batch_instructors != 3:
+			errors.append(f"{class_record['code']} class has {batch_instructors} instructors, expected 3")
+		if batch_enrollments != expected_students:
+			errors.append(
+				f"{class_record['code']} has {batch_enrollments} batch enrollments, "
+				f"expected {expected_students}"
+			)
+		if course_enrollments != expected_students:
+			errors.append(
+				f"{class_record['code']} has {course_enrollments} course enrollments, "
+				f"expected {expected_students}"
+			)
+
+	if errors:
+		frappe.throw("Stanford High School seed validation failed:<br>" + "<br>".join(errors))
+
+	return {
+		"valid": True,
+		"classes": len(dataset["classes"]),
+		"teachers": len(dataset["teachers"]),
+		"students": len(dataset["students"]),
+		"batch_enrollments": total_batch_enrollments,
+		"course_enrollments": total_course_enrollments,
+	}
+
+
 def seed() -> dict:
 	"""Create or update the Stanford High School sample dataset.
 
@@ -655,6 +719,7 @@ def seed() -> dict:
 					_ensure_batch_enrollment(student_email, batch_name)
 				)
 
+		summary["verification"] = validate_seed()
 		frappe.db.commit()
 		return summary
 	except Exception:

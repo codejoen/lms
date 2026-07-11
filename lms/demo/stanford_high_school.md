@@ -32,4 +32,11 @@ bench --site <site-name> execute lms.demo.stanford_high_school.seed
 ```
 
 The seed is idempotent: running it again updates the synthetic users, courses, and classes and only
-creates missing enrollments. It commits on success and rolls back on failure.
+creates missing enrollments. Before committing, it verifies every instructor and enrollment count;
+it rolls back if validation fails.
+
+The same database validation can be run independently:
+
+```bash
+bench --site <site-name> execute lms.demo.stanford_high_school.validate_seed
+```
