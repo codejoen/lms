@@ -169,6 +169,20 @@ To setup the repository locally follow the steps mentioned below:
 
 ## Learn and connect
 
+## Experimental AI capability dashboard
+
+This branch includes an educator-facing AI capability dashboard concept for reviewing student AI activity and full task context. The interactive Vue prototype, product rationale, capability model, suggested data contract, and backend integration plan are documented in [`frontend/src/pages/ai-capability/README.md`](frontend/src/pages/ai-capability/README.md).
+
+The prototype is available at `/lms/ai-capability` when the LMS frontend is running.
+
+- 25 fictional Stanford High School students
+- abstract colored-circle student representation
+- AI capability states and filters
+- simulated live AI logs and flagged sessions
+- per-student context drawer
+
+The current data is mocked and must be replaced with permission-aware Frappe resources before production use.
+
 - [Telegram Public Group](https://t.me/frappelms)
 - [Discuss Forum](https://discuss.frappe.io/c/lms/70)
 - [Documentation](https://docs.frappe.io/learning)

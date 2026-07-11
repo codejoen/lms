@@ -1,0 +1,11 @@
+# Data-model and migration changes require review from the other maintainer.
+/lms/**/doctype/** @codejoen @fabianprogrammer123
+/lms/patches.txt @codejoen @fabianprogrammer123
+/lms/hooks.py @codejoen @fabianprogrammer123
+/lms/fixtures/** @codejoen @fabianprogrammer123
+
+# Changes to build, test, release, and dependency configuration are shared ownership.
+/.github/workflows/** @codejoen @fabianprogrammer123
+/pyproject.toml @codejoen @fabianprogrammer123
+/package.json @codejoen @fabianprogrammer123
+/frontend/package.json @codejoen @fabianprogrammer123
