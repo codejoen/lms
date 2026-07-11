@@ -10,6 +10,7 @@ import re
 from collections import Counter
 
 import frappe
+from frappe import _
 
 SCHOOL_NAME = "Stanford High School"
 ACADEMIC_YEAR = "2026-27"
@@ -609,11 +610,16 @@ def _ensure_batch_enrollment(student_email: str, batch_name: str) -> bool:
 	enrollment.update(
 		{
 			"member": student_email,
+			"member_name": frappe.db.get_value("User", student_email, "full_name"),
 			"batch": batch_name,
 			"confirmation_email_sent": 1,
 		}
 	)
-	enrollment.insert(ignore_permissions=True)
+	# This opt-in CLI seed deliberately avoids enrollment emails and does not
+	# impersonate an Administrator. Insert the deterministic batch membership,
+	# then reuse the controller's normal course-enrollment logic.
+	enrollment.db_insert()
+	enrollment.validate_course_enrollment()
 	return True
 
 
@@ -669,7 +675,7 @@ def validate_seed() -> dict:
 			)
 
 	if errors:
-		frappe.throw("Stanford High School seed validation failed:<br>" + "<br>".join(errors))
+		frappe.throw(_("Stanford High School seed validation failed:") + "<br>" + "<br>".join(errors))
 
 	return {
 		"valid": True,
@@ -688,7 +694,6 @@ def seed() -> dict:
 	missing records are created. No welcome or enrollment emails are sent.
 	"""
 	dataset = build_dataset()
-	original_user = frappe.session.user
 	summary = {
 		**preview(),
 		"teachers_created": 0,
@@ -699,7 +704,6 @@ def seed() -> dict:
 	}
 
 	try:
-		frappe.set_user("Administrator")
 		for category in sorted({record["department"] for record in dataset["classes"]}):
 			_ensure_category(category)
 
@@ -725,5 +729,3 @@ def seed() -> dict:
 	except Exception:
 		frappe.db.rollback()
 		raise
-	finally:
-		frappe.set_user(original_user or "Guest")
